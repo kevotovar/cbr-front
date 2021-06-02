@@ -1,6 +1,17 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Image from 'next/image';
+import { fetchRealtiesSearch } from '../services';
+
+import styles from '../styles/Home.module.css';
+
+export async function getStaticProps() {
+  const { data } = await fetchRealtiesSearch();
+  return {
+    props: {
+      data,
+    },
+  };
+}
 
 export default function Home() {
   return (
@@ -65,5 +76,5 @@ export default function Home() {
         </a>
       </footer>
     </div>
-  )
+  );
 }
