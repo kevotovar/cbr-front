@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { fetchRealtiesSearch } from '../services';
+import { fetchRealtiesSearch, RealtiesSearchPageResponse } from '../services';
 
 import styles from '../styles/Home.module.css';
 
@@ -13,7 +13,11 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home() {
+interface HomeProps {
+  data: RealtiesSearchPageResponse;
+}
+
+export default function Home({ data }: HomeProps) {
   return (
     <div className={styles.container}>
       <Head>

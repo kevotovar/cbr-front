@@ -39,7 +39,7 @@ export interface RealtiesSearchPageResponse {
   pageCount: number;
   pageSize: number;
   totalItems: number;
-  items: [];
+  items: RealtySearchItem[];
 }
 
 export async function fetchRealtiesSearch(params?: object) {
