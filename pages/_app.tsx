@@ -1,8 +1,12 @@
 import { useRef, useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Hydrate } from 'react-query/hydration';
+import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-import '../styles/globals.css';
+import Layout from '../components/Layout';
+
+import theme from '../styles/theme';
 
 function MyApp({ Component, pageProps }) {
   const queryClientRef = useRef<QueryClient>();
@@ -20,7 +24,12 @@ function MyApp({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClientRef.current}>
       <Hydrate state={pageProps.dehydratedState}>
-        <Component {...pageProps} />
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
       </Hydrate>
     </QueryClientProvider>
   );
